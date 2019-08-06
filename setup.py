@@ -4,6 +4,7 @@ setup(name='chrono',
       entry_points={
           'console_scripts': [
               'chrono = chrono:launch',
+              'leftofday = today:main',
               ],
           },
       )

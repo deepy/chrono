@@ -32,6 +32,7 @@ def main():
     import dateutil.parser
     import humanize
     with open(os.path.expanduser('~/.chronodb'), 'r') as file:
+        t = datetime.timedelta(0)
         now = datetime.datetime.now(datetime.timezone.utc)
         today = datetime.timedelta(hours=7)
         arr = None
@@ -56,7 +57,10 @@ def main():
                         raise Exception('Missing arrive, at {} and found {}'.format(dep, res[0]))
                     dep = date
                     arr = None
-        print(humanize.naturaldelta(today), end='')
+        if today > t:
+            print("{} left".format(humanize.naturaldelta(today)), end='')
+        else:
+            print("{}".format(humanize.naturaltime(-today)), end='')
 
 
 if __name__ == '__main__':
